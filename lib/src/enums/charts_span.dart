@@ -1,0 +1,1 @@
+enum ChartsSpan { day, hour }
