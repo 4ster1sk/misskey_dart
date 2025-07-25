@@ -81,13 +81,17 @@ class StreamingService implements StreamingController, WebSocketController {
         try {
           await _connectWebSocket();
           if (isReconnect) {
-            for (final connection in _connections) {
-              if (!_disconnectIds.containsKey(connection.id)) {
-                sendRequest(StreamingRequestType.connect, connection);
+            for (var i = _connections.length - 1; i >= 0; i--) {
+              final connection = _connections[i];
+              if (_disconnectIds.containsKey((connection.id))) {
+                _connections.removeAt(i);
+                continue;
               }
+              sendRequest(StreamingRequestType.connect, connection);
             }
-            _disconnectIds.clear();
 
+            _disconnectIds.clear();
+            
             final subNotes = _subNotes;
             for (final subscriptedNotes in subNotes.entries) {
               sendRequest(
