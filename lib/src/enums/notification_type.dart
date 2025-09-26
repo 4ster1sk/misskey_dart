@@ -9,6 +9,8 @@ enum NotificationType {
   reaction,
   pollVote,
   pollEnded,
+  scheduledNotePosted,
+  scheduledNotePostFailed,
   receiveFollowRequest,
   followRequestAccepted,
   groupInvited,

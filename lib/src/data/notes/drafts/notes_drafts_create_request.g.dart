@@ -29,6 +29,9 @@ _NotesDraftsCreateRequest _$NotesDraftsCreateRequestFromJson(
           ? null
           : NotesCreatePollRequest.fromJson(
               json['poll'] as Map<String, dynamic>),
+      scheduledAt: _$JsonConverterFromJson<String, DateTime>(
+          json['scheduledAt'], const DateTimeConverter().fromJson),
+      isActuallyScheduled: json['isActuallyScheduled'] as bool?,
     );
 
 Map<String, dynamic> _$NotesDraftsCreateRequestToJson(
@@ -48,6 +51,9 @@ Map<String, dynamic> _$NotesDraftsCreateRequestToJson(
       'text': instance.text,
       'fileIds': instance.fileIds,
       'poll': instance.poll?.toJson(),
+      'scheduledAt': _$JsonConverterToJson<String, DateTime>(
+          instance.scheduledAt, const DateTimeConverter().toJson),
+      'isActuallyScheduled': instance.isActuallyScheduled,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

@@ -478,6 +478,8 @@ abstract class UserPolicies with _$UserPolicies {
     bool? canImportUserLists,
     ChatAvailability? chatAvailability,
     int? noteDraftLimit,
+    int? scheduledNoteLimit,
+    bool? watermarkAvailable,
   }) = _UserPolicies;
 
   factory UserPolicies.fromJson(Map<String, Object?> json) =>
@@ -530,6 +532,8 @@ abstract class NotificationRecieveConfigs with _$NotificationRecieveConfigs {
     NotificationRecieveConfig? quote,
     NotificationRecieveConfig? reaction,
     NotificationRecieveConfig? pollEnded,
+    NotificationRecieveConfig? scheduledNotePosted,
+    NotificationRecieveConfig? scheduledNotePostFailed,
     NotificationRecieveConfig? receiveFollowRequest,
     NotificationRecieveConfig? followRequestAccepted,
     NotificationRecieveConfig? roleAssigned,

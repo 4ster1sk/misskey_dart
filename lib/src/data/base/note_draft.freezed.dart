@@ -37,6 +37,9 @@ mixin _$NoteDraft {
   NoteChannelInfo? get channel;
   bool? get localOnly;
   ReactionAcceptance? get reactionAcceptance;
+  @DateTimeConverter()
+  DateTime? get scheduledAt;
+  bool? get isActuallyScheduled;
 
   /// Create a copy of NoteDraft
   /// with the given fields replaced by the non-null parameter values.
@@ -79,7 +82,11 @@ mixin _$NoteDraft {
             (identical(other.localOnly, localOnly) ||
                 other.localOnly == localOnly) &&
             (identical(other.reactionAcceptance, reactionAcceptance) ||
-                other.reactionAcceptance == reactionAcceptance));
+                other.reactionAcceptance == reactionAcceptance) &&
+            (identical(other.scheduledAt, scheduledAt) ||
+                other.scheduledAt == scheduledAt) &&
+            (identical(other.isActuallyScheduled, isActuallyScheduled) ||
+                other.isActuallyScheduled == isActuallyScheduled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -105,12 +112,14 @@ mixin _$NoteDraft {
         channelId,
         channel,
         localOnly,
-        reactionAcceptance
+        reactionAcceptance,
+        scheduledAt,
+        isActuallyScheduled
       ]);
 
   @override
   String toString() {
-    return 'NoteDraft(id: $id, createdAt: $createdAt, text: $text, cw: $cw, userId: $userId, user: $user, replyId: $replyId, renoteId: $renoteId, reply: $reply, renote: $renote, visibility: $visibility, visibleUserIds: $visibleUserIds, fileIds: $fileIds, files: $files, hashtag: $hashtag, poll: $poll, channelId: $channelId, channel: $channel, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance)';
+    return 'NoteDraft(id: $id, createdAt: $createdAt, text: $text, cw: $cw, userId: $userId, user: $user, replyId: $replyId, renoteId: $renoteId, reply: $reply, renote: $renote, visibility: $visibility, visibleUserIds: $visibleUserIds, fileIds: $fileIds, files: $files, hashtag: $hashtag, poll: $poll, channelId: $channelId, channel: $channel, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance, scheduledAt: $scheduledAt, isActuallyScheduled: $isActuallyScheduled)';
   }
 }
 
@@ -139,7 +148,9 @@ abstract mixin class $NoteDraftCopyWith<$Res> {
       String? channelId,
       NoteChannelInfo? channel,
       bool? localOnly,
-      ReactionAcceptance? reactionAcceptance});
+      ReactionAcceptance? reactionAcceptance,
+      @DateTimeConverter() DateTime? scheduledAt,
+      bool? isActuallyScheduled});
 
   $UserLiteCopyWith<$Res> get user;
   $NoteCopyWith<$Res>? get reply;
@@ -180,6 +191,8 @@ class _$NoteDraftCopyWithImpl<$Res> implements $NoteDraftCopyWith<$Res> {
     Object? channel = freezed,
     Object? localOnly = freezed,
     Object? reactionAcceptance = freezed,
+    Object? scheduledAt = freezed,
+    Object? isActuallyScheduled = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -262,6 +275,14 @@ class _$NoteDraftCopyWithImpl<$Res> implements $NoteDraftCopyWith<$Res> {
           ? _self.reactionAcceptance
           : reactionAcceptance // ignore: cast_nullable_to_non_nullable
               as ReactionAcceptance?,
+      scheduledAt: freezed == scheduledAt
+          ? _self.scheduledAt
+          : scheduledAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isActuallyScheduled: freezed == isActuallyScheduled
+          ? _self.isActuallyScheduled
+          : isActuallyScheduled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -355,7 +376,9 @@ class _NoteDraft implements NoteDraft {
       this.channelId,
       this.channel,
       this.localOnly,
-      this.reactionAcceptance})
+      this.reactionAcceptance,
+      @DateTimeConverter() this.scheduledAt,
+      this.isActuallyScheduled})
       : _visibleUserIds = visibleUserIds,
         _fileIds = fileIds,
         _files = files;
@@ -428,6 +451,11 @@ class _NoteDraft implements NoteDraft {
   final bool? localOnly;
   @override
   final ReactionAcceptance? reactionAcceptance;
+  @override
+  @DateTimeConverter()
+  final DateTime? scheduledAt;
+  @override
+  final bool? isActuallyScheduled;
 
   /// Create a copy of NoteDraft
   /// with the given fields replaced by the non-null parameter values.
@@ -475,7 +503,11 @@ class _NoteDraft implements NoteDraft {
             (identical(other.localOnly, localOnly) ||
                 other.localOnly == localOnly) &&
             (identical(other.reactionAcceptance, reactionAcceptance) ||
-                other.reactionAcceptance == reactionAcceptance));
+                other.reactionAcceptance == reactionAcceptance) &&
+            (identical(other.scheduledAt, scheduledAt) ||
+                other.scheduledAt == scheduledAt) &&
+            (identical(other.isActuallyScheduled, isActuallyScheduled) ||
+                other.isActuallyScheduled == isActuallyScheduled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -501,12 +533,14 @@ class _NoteDraft implements NoteDraft {
         channelId,
         channel,
         localOnly,
-        reactionAcceptance
+        reactionAcceptance,
+        scheduledAt,
+        isActuallyScheduled
       ]);
 
   @override
   String toString() {
-    return 'NoteDraft(id: $id, createdAt: $createdAt, text: $text, cw: $cw, userId: $userId, user: $user, replyId: $replyId, renoteId: $renoteId, reply: $reply, renote: $renote, visibility: $visibility, visibleUserIds: $visibleUserIds, fileIds: $fileIds, files: $files, hashtag: $hashtag, poll: $poll, channelId: $channelId, channel: $channel, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance)';
+    return 'NoteDraft(id: $id, createdAt: $createdAt, text: $text, cw: $cw, userId: $userId, user: $user, replyId: $replyId, renoteId: $renoteId, reply: $reply, renote: $renote, visibility: $visibility, visibleUserIds: $visibleUserIds, fileIds: $fileIds, files: $files, hashtag: $hashtag, poll: $poll, channelId: $channelId, channel: $channel, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance, scheduledAt: $scheduledAt, isActuallyScheduled: $isActuallyScheduled)';
   }
 }
 
@@ -538,7 +572,9 @@ abstract mixin class _$NoteDraftCopyWith<$Res>
       String? channelId,
       NoteChannelInfo? channel,
       bool? localOnly,
-      ReactionAcceptance? reactionAcceptance});
+      ReactionAcceptance? reactionAcceptance,
+      @DateTimeConverter() DateTime? scheduledAt,
+      bool? isActuallyScheduled});
 
   @override
   $UserLiteCopyWith<$Res> get user;
@@ -584,6 +620,8 @@ class __$NoteDraftCopyWithImpl<$Res> implements _$NoteDraftCopyWith<$Res> {
     Object? channel = freezed,
     Object? localOnly = freezed,
     Object? reactionAcceptance = freezed,
+    Object? scheduledAt = freezed,
+    Object? isActuallyScheduled = freezed,
   }) {
     return _then(_NoteDraft(
       id: null == id
@@ -666,6 +704,14 @@ class __$NoteDraftCopyWithImpl<$Res> implements _$NoteDraftCopyWith<$Res> {
           ? _self.reactionAcceptance
           : reactionAcceptance // ignore: cast_nullable_to_non_nullable
               as ReactionAcceptance?,
+      scheduledAt: freezed == scheduledAt
+          ? _self.scheduledAt
+          : scheduledAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isActuallyScheduled: freezed == isActuallyScheduled
+          ? _self.isActuallyScheduled
+          : isActuallyScheduled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 

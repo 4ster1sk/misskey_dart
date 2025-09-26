@@ -220,6 +220,7 @@ class MisskeyNotesDrafts {
     final response = await _apiService.post<Map<String, dynamic>>(
       "notes/drafts/create",
       request.toJson(),
+      excludeRemoveNullPredicate: (_, __) => true,
     );
     return NotesDraftsCreateResponse.fromJson(response);
   }

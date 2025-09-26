@@ -28,6 +28,9 @@ mixin _$NotesDraftsCreateRequest {
   String? get text;
   List<String>? get fileIds;
   NotesCreatePollRequest? get poll;
+  @DateTimeConverter()
+  DateTime? get scheduledAt;
+  bool? get isActuallyScheduled;
 
   /// Create a copy of NotesDraftsCreateRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -62,7 +65,11 @@ mixin _$NotesDraftsCreateRequest {
                 other.channelId == channelId) &&
             (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other.fileIds, fileIds) &&
-            (identical(other.poll, poll) || other.poll == poll));
+            (identical(other.poll, poll) || other.poll == poll) &&
+            (identical(other.scheduledAt, scheduledAt) ||
+                other.scheduledAt == scheduledAt) &&
+            (identical(other.isActuallyScheduled, isActuallyScheduled) ||
+                other.isActuallyScheduled == isActuallyScheduled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -80,11 +87,13 @@ mixin _$NotesDraftsCreateRequest {
       channelId,
       text,
       const DeepCollectionEquality().hash(fileIds),
-      poll);
+      poll,
+      scheduledAt,
+      isActuallyScheduled);
 
   @override
   String toString() {
-    return 'NotesDraftsCreateRequest(visibility: $visibility, visibleUserIds: $visibleUserIds, cw: $cw, hashtag: $hashtag, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance, replyId: $replyId, renoteId: $renoteId, channelId: $channelId, text: $text, fileIds: $fileIds, poll: $poll)';
+    return 'NotesDraftsCreateRequest(visibility: $visibility, visibleUserIds: $visibleUserIds, cw: $cw, hashtag: $hashtag, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance, replyId: $replyId, renoteId: $renoteId, channelId: $channelId, text: $text, fileIds: $fileIds, poll: $poll, scheduledAt: $scheduledAt, isActuallyScheduled: $isActuallyScheduled)';
   }
 }
 
@@ -106,7 +115,9 @@ abstract mixin class $NotesDraftsCreateRequestCopyWith<$Res> {
       String? channelId,
       String? text,
       List<String>? fileIds,
-      NotesCreatePollRequest? poll});
+      NotesCreatePollRequest? poll,
+      @DateTimeConverter() DateTime? scheduledAt,
+      bool? isActuallyScheduled});
 
   $NotesCreatePollRequestCopyWith<$Res>? get poll;
 }
@@ -136,6 +147,8 @@ class _$NotesDraftsCreateRequestCopyWithImpl<$Res>
     Object? text = freezed,
     Object? fileIds = freezed,
     Object? poll = freezed,
+    Object? scheduledAt = freezed,
+    Object? isActuallyScheduled = freezed,
   }) {
     return _then(_self.copyWith(
       visibility: freezed == visibility
@@ -186,6 +199,14 @@ class _$NotesDraftsCreateRequestCopyWithImpl<$Res>
           ? _self.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as NotesCreatePollRequest?,
+      scheduledAt: freezed == scheduledAt
+          ? _self.scheduledAt
+          : scheduledAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isActuallyScheduled: freezed == isActuallyScheduled
+          ? _self.isActuallyScheduled
+          : isActuallyScheduled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -219,7 +240,9 @@ class _NotesDraftsCreateRequest implements NotesDraftsCreateRequest {
       this.channelId,
       this.text,
       final List<String>? fileIds,
-      this.poll})
+      this.poll,
+      @DateTimeConverter() this.scheduledAt,
+      this.isActuallyScheduled})
       : _visibleUserIds = visibleUserIds,
         _fileIds = fileIds;
   factory _NotesDraftsCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -266,6 +289,11 @@ class _NotesDraftsCreateRequest implements NotesDraftsCreateRequest {
 
   @override
   final NotesCreatePollRequest? poll;
+  @override
+  @DateTimeConverter()
+  final DateTime? scheduledAt;
+  @override
+  final bool? isActuallyScheduled;
 
   /// Create a copy of NotesDraftsCreateRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -305,7 +333,11 @@ class _NotesDraftsCreateRequest implements NotesDraftsCreateRequest {
                 other.channelId == channelId) &&
             (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other._fileIds, _fileIds) &&
-            (identical(other.poll, poll) || other.poll == poll));
+            (identical(other.poll, poll) || other.poll == poll) &&
+            (identical(other.scheduledAt, scheduledAt) ||
+                other.scheduledAt == scheduledAt) &&
+            (identical(other.isActuallyScheduled, isActuallyScheduled) ||
+                other.isActuallyScheduled == isActuallyScheduled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -323,11 +355,13 @@ class _NotesDraftsCreateRequest implements NotesDraftsCreateRequest {
       channelId,
       text,
       const DeepCollectionEquality().hash(_fileIds),
-      poll);
+      poll,
+      scheduledAt,
+      isActuallyScheduled);
 
   @override
   String toString() {
-    return 'NotesDraftsCreateRequest(visibility: $visibility, visibleUserIds: $visibleUserIds, cw: $cw, hashtag: $hashtag, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance, replyId: $replyId, renoteId: $renoteId, channelId: $channelId, text: $text, fileIds: $fileIds, poll: $poll)';
+    return 'NotesDraftsCreateRequest(visibility: $visibility, visibleUserIds: $visibleUserIds, cw: $cw, hashtag: $hashtag, localOnly: $localOnly, reactionAcceptance: $reactionAcceptance, replyId: $replyId, renoteId: $renoteId, channelId: $channelId, text: $text, fileIds: $fileIds, poll: $poll, scheduledAt: $scheduledAt, isActuallyScheduled: $isActuallyScheduled)';
   }
 }
 
@@ -351,7 +385,9 @@ abstract mixin class _$NotesDraftsCreateRequestCopyWith<$Res>
       String? channelId,
       String? text,
       List<String>? fileIds,
-      NotesCreatePollRequest? poll});
+      NotesCreatePollRequest? poll,
+      @DateTimeConverter() DateTime? scheduledAt,
+      bool? isActuallyScheduled});
 
   @override
   $NotesCreatePollRequestCopyWith<$Res>? get poll;
@@ -382,6 +418,8 @@ class __$NotesDraftsCreateRequestCopyWithImpl<$Res>
     Object? text = freezed,
     Object? fileIds = freezed,
     Object? poll = freezed,
+    Object? scheduledAt = freezed,
+    Object? isActuallyScheduled = freezed,
   }) {
     return _then(_NotesDraftsCreateRequest(
       visibility: freezed == visibility
@@ -432,6 +470,14 @@ class __$NotesDraftsCreateRequestCopyWithImpl<$Res>
           ? _self.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as NotesCreatePollRequest?,
+      scheduledAt: freezed == scheduledAt
+          ? _self.scheduledAt
+          : scheduledAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isActuallyScheduled: freezed == isActuallyScheduled
+          ? _self.isActuallyScheduled
+          : isActuallyScheduled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
