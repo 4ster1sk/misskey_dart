@@ -29,6 +29,8 @@ abstract class NoteDraft with _$NoteDraft {
     NoteChannelInfo? channel,
     bool? localOnly,
     ReactionAcceptance? reactionAcceptance,
+    @DateTimeConverter() DateTime? scheduledAt,
+    bool? isActuallyScheduled,
   }) = _NoteDraft;
 
   factory NoteDraft.fromJson(Map<String, Object?> json) =>

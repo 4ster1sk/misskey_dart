@@ -18,6 +18,7 @@ mixin _$NotesDraftsListRequest {
   int? get limit;
   String? get sinceId;
   String? get untilId;
+  bool? get scheduled;
 
   /// Create a copy of NotesDraftsListRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -37,16 +38,19 @@ mixin _$NotesDraftsListRequest {
             other is NotesDraftsListRequest &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.sinceId, sinceId) || other.sinceId == sinceId) &&
-            (identical(other.untilId, untilId) || other.untilId == untilId));
+            (identical(other.untilId, untilId) || other.untilId == untilId) &&
+            (identical(other.scheduled, scheduled) ||
+                other.scheduled == scheduled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, limit, sinceId, untilId);
+  int get hashCode =>
+      Object.hash(runtimeType, limit, sinceId, untilId, scheduled);
 
   @override
   String toString() {
-    return 'NotesDraftsListRequest(limit: $limit, sinceId: $sinceId, untilId: $untilId)';
+    return 'NotesDraftsListRequest(limit: $limit, sinceId: $sinceId, untilId: $untilId, scheduled: $scheduled)';
   }
 }
 
@@ -56,7 +60,7 @@ abstract mixin class $NotesDraftsListRequestCopyWith<$Res> {
           $Res Function(NotesDraftsListRequest) _then) =
       _$NotesDraftsListRequestCopyWithImpl;
   @useResult
-  $Res call({int? limit, String? sinceId, String? untilId});
+  $Res call({int? limit, String? sinceId, String? untilId, bool? scheduled});
 }
 
 /// @nodoc
@@ -75,6 +79,7 @@ class _$NotesDraftsListRequestCopyWithImpl<$Res>
     Object? limit = freezed,
     Object? sinceId = freezed,
     Object? untilId = freezed,
+    Object? scheduled = freezed,
   }) {
     return _then(_self.copyWith(
       limit: freezed == limit
@@ -89,6 +94,10 @@ class _$NotesDraftsListRequestCopyWithImpl<$Res>
           ? _self.untilId
           : untilId // ignore: cast_nullable_to_non_nullable
               as String?,
+      scheduled: freezed == scheduled
+          ? _self.scheduled
+          : scheduled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -96,7 +105,8 @@ class _$NotesDraftsListRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _NotesDraftsListRequest implements NotesDraftsListRequest {
-  const _NotesDraftsListRequest({this.limit, this.sinceId, this.untilId});
+  const _NotesDraftsListRequest(
+      {this.limit, this.sinceId, this.untilId, this.scheduled});
   factory _NotesDraftsListRequest.fromJson(Map<String, dynamic> json) =>
       _$NotesDraftsListRequestFromJson(json);
 
@@ -106,6 +116,8 @@ class _NotesDraftsListRequest implements NotesDraftsListRequest {
   final String? sinceId;
   @override
   final String? untilId;
+  @override
+  final bool? scheduled;
 
   /// Create a copy of NotesDraftsListRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -130,16 +142,19 @@ class _NotesDraftsListRequest implements NotesDraftsListRequest {
             other is _NotesDraftsListRequest &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.sinceId, sinceId) || other.sinceId == sinceId) &&
-            (identical(other.untilId, untilId) || other.untilId == untilId));
+            (identical(other.untilId, untilId) || other.untilId == untilId) &&
+            (identical(other.scheduled, scheduled) ||
+                other.scheduled == scheduled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, limit, sinceId, untilId);
+  int get hashCode =>
+      Object.hash(runtimeType, limit, sinceId, untilId, scheduled);
 
   @override
   String toString() {
-    return 'NotesDraftsListRequest(limit: $limit, sinceId: $sinceId, untilId: $untilId)';
+    return 'NotesDraftsListRequest(limit: $limit, sinceId: $sinceId, untilId: $untilId, scheduled: $scheduled)';
   }
 }
 
@@ -151,7 +166,7 @@ abstract mixin class _$NotesDraftsListRequestCopyWith<$Res>
       __$NotesDraftsListRequestCopyWithImpl;
   @override
   @useResult
-  $Res call({int? limit, String? sinceId, String? untilId});
+  $Res call({int? limit, String? sinceId, String? untilId, bool? scheduled});
 }
 
 /// @nodoc
@@ -170,6 +185,7 @@ class __$NotesDraftsListRequestCopyWithImpl<$Res>
     Object? limit = freezed,
     Object? sinceId = freezed,
     Object? untilId = freezed,
+    Object? scheduled = freezed,
   }) {
     return _then(_NotesDraftsListRequest(
       limit: freezed == limit
@@ -184,6 +200,10 @@ class __$NotesDraftsListRequestCopyWithImpl<$Res>
           ? _self.untilId
           : untilId // ignore: cast_nullable_to_non_nullable
               as String?,
+      scheduled: freezed == scheduled
+          ? _self.scheduled
+          : scheduled // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }

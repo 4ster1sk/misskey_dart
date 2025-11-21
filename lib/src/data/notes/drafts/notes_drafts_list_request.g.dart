@@ -12,6 +12,7 @@ _NotesDraftsListRequest _$NotesDraftsListRequestFromJson(
       limit: (json['limit'] as num?)?.toInt(),
       sinceId: json['sinceId'] as String?,
       untilId: json['untilId'] as String?,
+      scheduled: json['scheduled'] as bool?,
     );
 
 Map<String, dynamic> _$NotesDraftsListRequestToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$NotesDraftsListRequestToJson(
       'limit': instance.limit,
       'sinceId': instance.sinceId,
       'untilId': instance.untilId,
+      'scheduled': instance.scheduled,
     };

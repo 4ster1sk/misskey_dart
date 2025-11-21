@@ -43,6 +43,9 @@ _NoteDraft _$NoteDraftFromJson(Map<String, dynamic> json) => _NoteDraft(
       localOnly: json['localOnly'] as bool?,
       reactionAcceptance: $enumDecodeNullable(
           _$ReactionAcceptanceEnumMap, json['reactionAcceptance']),
+      scheduledAt: _$JsonConverterFromJson<String, DateTime>(
+          json['scheduledAt'], const DateTimeConverter().fromJson),
+      isActuallyScheduled: json['isActuallyScheduled'] as bool?,
     );
 
 Map<String, dynamic> _$NoteDraftToJson(_NoteDraft instance) =>
@@ -69,6 +72,9 @@ Map<String, dynamic> _$NoteDraftToJson(_NoteDraft instance) =>
       'localOnly': instance.localOnly,
       'reactionAcceptance':
           _$ReactionAcceptanceEnumMap[instance.reactionAcceptance],
+      'scheduledAt': _$JsonConverterToJson<String, DateTime>(
+          instance.scheduledAt, const DateTimeConverter().toJson),
+      'isActuallyScheduled': instance.isActuallyScheduled,
     };
 
 const _$ReactionAcceptanceEnumMap = {
@@ -78,6 +84,18 @@ const _$ReactionAcceptanceEnumMap = {
       'nonSensitiveOnlyForLocalLikeOnlyForRemote',
   ReactionAcceptance.likeOnly: 'likeOnly',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
 
 _NoteDraftPoll _$NoteDraftPollFromJson(Map<String, dynamic> json) =>
     _NoteDraftPoll(
@@ -99,15 +117,3 @@ Map<String, dynamic> _$NoteDraftPollToJson(_NoteDraftPoll instance) =>
       'multiple': instance.multiple,
       'choices': instance.choices,
     };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);

@@ -49,6 +49,8 @@ const _$NotificationTypeEnumMap = {
   NotificationType.reaction: 'reaction',
   NotificationType.pollVote: 'pollVote',
   NotificationType.pollEnded: 'pollEnded',
+  NotificationType.scheduledNotePosted: 'scheduledNotePosted',
+  NotificationType.scheduledNotePostFailed: 'scheduledNotePostFailed',
   NotificationType.receiveFollowRequest: 'receiveFollowRequest',
   NotificationType.followRequestAccepted: 'followRequestAccepted',
   NotificationType.groupInvited: 'groupInvited',
