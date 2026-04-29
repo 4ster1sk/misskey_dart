@@ -440,6 +440,7 @@ Map<String, dynamic> _$UserDetailedNotMeWithRelationsToJson(
 
 const _$NotifyEnumMap = {
   Notify.normal: 'normal',
+  Notify.withFile: 'withFile',
   Notify.none: 'none',
 };
 

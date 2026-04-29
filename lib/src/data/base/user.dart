@@ -505,6 +505,7 @@ enum ChatScope {
 
 enum Notify {
   normal,
+  withFile,
   none,
 }
 
